@@ -1,17 +1,16 @@
+import CodeMirror from '../codemirror/lib/codemirror';
+import '../codemirror/mode/css/css';
+import '../codemirror/lib/codemirror.css';
+import '../codemirror/theme/dracula.css';
+
 console.log('I am running');
 
-var stylesheetContent = document.getElementById("stylesheet_contents");
 var stylesheetCol = document.querySelector(".sheets .col");
+var stylesheetContent = document.getElementById("stylesheet_contents");
 
 var myCodeMirror = CodeMirror(stylesheetCol, {
     mode:  "css",
-    theme: "dracula",
-    tabSize: 2,
-    autoCloseBrackets: true,
-    styleActiveLine: true,
-    scrollbarStyle: "overlay",
-    gutters: ["CodeMirror-lint-markers"],
-    lint: true
+    theme: "dracula"
 });
 
 myCodeMirror.doc.setValue(stylesheetContent.value);

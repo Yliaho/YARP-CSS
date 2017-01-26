@@ -9,25 +9,11 @@
     {
       "matches": ["https://www.reddit.com/r/*/about/stylesheet"],
       "css": [
-        "codemirror/lib/codemirror.css", 
-        "codemirror/addon/dialog/dialog.css",
-        "codemirror/theme/dracula.css",
-        "codemirror/addon/scroll/simplescrollbars.css", 
         "style.css"
       ],
       "js": [
-        // codemirror
-        "codemirror/lib/codemirror.js", 
-        "codemirror/mode/css/css.js", 
-        //addons
-        "codemirror/addon/dialog/dialog.js",
-        "codemirror/addon/search/search.js", 
-        "codemirror/addon/search/searchcursor.js", 
-        "codemirror/addon/edit/closebrackets.js",
-        "codemirror/addon/selection/active-line.js",
-        "codemirror/addon/scroll/simplescrollbars.js",
         // main
-        "main.js"
+        "dist/bundle.js"
       ]
     }
   ],
