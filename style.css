@@ -1,0 +1,11 @@
+#stylesheet_contents {
+    display: none;
+    visibility: hidden;
+}
+
+.CodeMirror {
+    font-family: Fira Code, monospace;
+    font-size: 13px;
+    height: 60vh;
+    overflow-x: hidden;
+}
