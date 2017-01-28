@@ -6,25 +6,25 @@ module.exports = {
     },
     module: {
         rules: [
-        {
-            test: /\.css$/,
-            use: [
-            { loader: "style-loader" },
-            { loader: "css-loader" },
-            ],
-        },
-        {
-            test: /\.useable\.css$/,
-            use: [
-            { 
-                loader: "style-loader",
-                options: {
-                useable: true
-                },
+            {
+                test: /\.css$/,
+                use: 
+                [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                ],
             },
-            { loader: "css-loader" },
-            ],
-        },
+            {
+                test: /\.vue$/,
+                loader: 'vue',
+                include: './app'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                include: './app',
+                exclude: /node_modules/,
+            }
         ],
-    },
+    }
 };

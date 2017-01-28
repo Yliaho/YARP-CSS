@@ -1,6 +1,5 @@
 #stylesheet_contents {
     display: none;
-    visibility: hidden;
 }
 
 .CodeMirror {
@@ -8,4 +7,67 @@
     font-size: 13px;
     height: 60vh;
     overflow-x: hidden;
+}
+
+.CodeMirror .cm-searching {
+  background: #ffa;
+  background: rgba(255, 255, 0, 0.8);
+  color: #000!important;
+}
+
+.image-preview-list {
+  margin: 0!important;
+  font-size: 14px;
+  height: calc(146px * 3);
+  overflow: overlay;
+}
+
+ul.image-preview-list li {
+  height: auto!important;
+  min-height: 100px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 6px 6px!important;
+  padding: 6px 0px;
+  padding-bottom: 26px!important;
+  border-radius: 3px;
+}
+
+.image-preview-list li .description > a:first-of-type {
+    display: none!important;
+    font-size: 0!important;
+}
+
+ul.image-preview-list li .paste-url, ul.image-preview-list li a.access-required {
+    position: absolute!important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    box-shadow: 0 -1px rgba(0, 0, 0, 0.1);
+    color: #000;
+    padding: 4px 0px;
+    background-color: rgba(0, 0, 0, 0.01);
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+ul.image-preview-list li .paste-url:hover, ul.image-preview-list li a.access-required:hover {
+    background-color: rgba(0, 0, 0, 0);;
+}
+
+ul.image-preview-list li .paste-url:active, ul.image-preview-list li a.access-required:active {
+   background-color: #3879D9;
+   color: white;
+}
+
+ul.image-preview-list li .paste-url {
+    right: calc(50% - 1px);
+    border: 0;
+    cursor: pointer;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+ul.image-preview-list li a.access-required {
+    left: 50%;
 }
