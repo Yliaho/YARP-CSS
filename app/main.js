@@ -12,16 +12,20 @@ import '../codemirror/addon/dialog/dialog.js';
 import '../codemirror/addon/dialog/dialog.css';
 import '../codemirror/addon/search/search.js';
 import '../codemirror/addon/search/match-highlighter.js';
+import '../codemirror/addon/scroll/simplescrollbars.js';
+import '../codemirror/addon/scroll/simplescrollbars.css';
 
-var stylesheetCol = document.querySelector(".sheets .col");
-var originalTextArea = document.querySelector(".sheets .col textarea");
-var stylesheetContent = document.getElementById("stylesheet_contents");
-var imagesPreview = document.getElementById('images');
+var stylesheetCol         = document.querySelector(".sheets .col");
+var originalTextArea      = document.querySelector(".sheets .col textarea");
+var stylesheetContent     = document.getElementById("stylesheet_contents");
+var imagesPreview         = document.getElementById('images');
 
 var myCodeMirror = CodeMirror(stylesheetCol, {
     mode: "css",
     theme: "dracula",
     autoCloseBrackets: true,
+    tabSize: 2,
+    scrollbarStyle: 'overlay'
 });
 
 //set codemirror value to match stylesheet_contents on load
@@ -32,6 +36,14 @@ myCodeMirror.on("change", function (cm, change) {
     stylesheetContent.value = cm.getValue();
     console.log(myCodeMirror.getCursor());
 });
+
+
+
+function scrollToCM() {
+    var cmEditor    = document.querySelector('.CodeMirror');
+    var cmEditorPos = cmEditor.getBoundingClientRect();
+    window.scrollTo(0, cmEditorPos.top);
+}
 
 var imgPreviewPanel = document.querySelector('.image-preview-list');
 
@@ -44,25 +56,19 @@ function loopImgPreviewNode() {
             button = document.createElement("A");
                 button.innerHTML = 'paste url';
                 button.className += "paste-url";
-            imgPreviewNode[i].querySelector(".description").appendChild(button);
-                button.previousSibling.previousSibling.style.display = 'none';
+                imgPreviewNode[i].querySelector(".description").appendChild(button);
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 myCodeMirror.doc.replaceSelection(imgUrl.textContent)
+                myCodeMirror.focus()
+                scrollToCM();
+                console.log(scrollToCM());
             })
         }());
     }
-    console.log(imgPreviewNode)
 } 
 
 loopImgPreviewNode();
-
-var button2 = document.createElement('button');
-    button2.innerHTML = 'test';
-imgPreviewPanel.appendChild(button2)
-button2.addEventListener('click', function(e) {
-  console.log(myCodeMirror.getCursor());
-});
 
 var toggleOriginalSheet = document.createElement("button");
     toggleOriginalSheet.innerHTML = "show/hide textarea"
