@@ -11724,7 +11724,10 @@ var myCodeMirror = __WEBPACK_IMPORTED_MODULE_0__codemirror_lib_codemirror___defa
     scrollbarStyle: 'overlay'
 });
 
-myCodeMirror.tabIndex = -1;
+myCodeMirror.element = document.querySelector(".CodeMirror");
+myCodeMirror.pos = myCodeMirror.element.offsetTop;
+myCodeMirror.focusAndScroll = function() {scrollTo(0, myCodeMirror.pos); myCodeMirror.focus();};
+
 
 //set codemirror value to match stylesheet_contents on load
 myCodeMirror.doc.setValue(stylesheetContent.value);
@@ -11732,26 +11735,20 @@ myCodeMirror.doc.setValue(stylesheetContent.value);
 //watch for changes on codemirror - update the stylesheet_contents value
 myCodeMirror.on("change", function (cm, change) {
     stylesheetContent.value = cm.getValue();
-    console.log(myCodeMirror.getCursor());
 });
 
-function scrollToCM() {
-    myCodeMirror.focus();
-    console.log(cmEditor.pos.top);
-}
 
 function pasteButton(node, imgUrl) {
     var button;
-    var perse = node;
     (function() {
         button = document.createElement("A");
             button.innerHTML = 'paste url';
             button.className += "paste-url";
-            perse.querySelector(".description").appendChild(button);
+            node.querySelector(".description").appendChild(button);
         button.addEventListener('click', function(e) {
             e.preventDefault();
             myCodeMirror.doc.replaceSelection(imgUrl.textContent)
-            scrollToCM();
+            myCodeMirror.focusAndScroll();
         })
     }());
 }
@@ -11767,6 +11764,7 @@ function loopImgPreviewNode() {
 } 
 
 loopImgPreviewNode();
+
 
 var toggleOriginalSheet = document.createElement("button");
     toggleOriginalSheet.innerHTML = "show/hide textarea";
@@ -11784,6 +11782,10 @@ toggleOriginalSheet.addEventListener('click', function(){
 })
 
 document.querySelector('.sheets .buttons').insertAdjacentElement('afterend', imagesPreview);
+
+Array.observe(imgPreviewNode, function(changes) {
+    console.log(changes)
+})
 
 /***/ }),
 /* 21 */

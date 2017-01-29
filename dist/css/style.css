@@ -36,17 +36,20 @@
   font-size: 14px;
   height: calc(146px * 3);
   overflow: overlay;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 ul.image-preview-list li {
-  height: auto!important;
-  min-height: 100px;
+  height: initial!important;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.15);
   margin: 6px 6px!important;
   padding: 6px 0px;
   padding-bottom: 26px!important;
   border-radius: 3px;
+  flex-basis: calc(50% - 14px);
 }
 
 ul.image-preview-list li img {
