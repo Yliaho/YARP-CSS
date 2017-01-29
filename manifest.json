@@ -1,15 +1,15 @@
 {
-  "name": "Append Test Text",
-  "description": "Add test123 to body",
-  "version": "1.0",
+  "name": "Yarp CSS",
+  "description": "Yet Another Reddit Plugin",
+  "version": "0.5",
   "permissions": [
     "activeTab"
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.reddit.com/r/*/about/stylesheet"],
+      "matches": ["*://*.reddit.com/r/*/about/stylesheet", "*://*.reddit.com/r/*/about/stylesheet/"],
       "css": [
-        "style.css"
+        "dist/css/style.css"
       ],
       "js": [
         // main
