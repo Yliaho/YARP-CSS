@@ -36,7 +36,7 @@ myCodeMirror.doc.setValue(stylesheetContent.value);
 
 //watch for changes on codemirror - update the stylesheet_contents value
 myCodeMirror.on("change", function (cm, change) {
-    stylesheetContent.value = cm.getValue();
+    stylesheetContent.value = cm.getValue()
 });
 
 
