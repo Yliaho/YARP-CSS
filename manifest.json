@@ -9,7 +9,7 @@
     {
       "matches": ["*://*.reddit.com/r/*/about/stylesheet", "*://*.reddit.com/r/*/about/stylesheet/"],
       "css": [
-        "style.css"
+        "dist/css/style.css"
       ],
       "js": [
         // main

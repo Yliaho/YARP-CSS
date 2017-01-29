@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 //core
 import CodeMirror from '../codemirror/lib/codemirror';
 import '../codemirror/mode/css/css';
@@ -28,6 +26,8 @@ var myCodeMirror = CodeMirror(stylesheetCol, {
     scrollbarStyle: 'overlay'
 });
 
+myCodeMirror.tabIndex = -1;
+
 //set codemirror value to match stylesheet_contents on load
 myCodeMirror.doc.setValue(stylesheetContent.value);
 
@@ -37,41 +37,41 @@ myCodeMirror.on("change", function (cm, change) {
     console.log(myCodeMirror.getCursor());
 });
 
-
-
 function scrollToCM() {
-    var cmEditor    = document.querySelector('.CodeMirror');
-    var cmEditorPos = cmEditor.getBoundingClientRect();
-    window.scrollTo(0, cmEditorPos.top);
+    myCodeMirror.focus();
+    console.log(cmEditor.pos.top);
+}
+
+function pasteButton(node, imgUrl) {
+    var button;
+    var perse = node;
+    (function() {
+        button = document.createElement("A");
+            button.innerHTML = 'paste url';
+            button.className += "paste-url";
+            perse.querySelector(".description").appendChild(button);
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            myCodeMirror.doc.replaceSelection(imgUrl.textContent)
+            scrollToCM();
+        })
+    }());
 }
 
 var imgPreviewPanel = document.querySelector('.image-preview-list');
 
 function loopImgPreviewNode() {
     var imgPreviewNode = Array.from(imgPreviewPanel.getElementsByTagName('LI'));
-    var button;
     for (var i = 0; i < imgPreviewNode.length; i++) {
-        (function() {
-            var imgUrl = imgPreviewNode[i].querySelector('.img-url');
-            button = document.createElement("A");
-                button.innerHTML = 'paste url';
-                button.className += "paste-url";
-                imgPreviewNode[i].querySelector(".description").appendChild(button);
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                myCodeMirror.doc.replaceSelection(imgUrl.textContent)
-                myCodeMirror.focus()
-                scrollToCM();
-                console.log(scrollToCM());
-            })
-        }());
+        var imgUrl = imgPreviewNode[i].querySelector('.img-url');
+        pasteButton(imgPreviewNode[i], imgUrl);
     }
 } 
 
 loopImgPreviewNode();
 
 var toggleOriginalSheet = document.createElement("button");
-    toggleOriginalSheet.innerHTML = "show/hide textarea"
+    toggleOriginalSheet.innerHTML = "show/hide textarea";
     var toggle = true;
     stylesheetCol.insertAdjacentElement('afterbegin', toggleOriginalSheet);
 
